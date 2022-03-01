@@ -1,0 +1,56 @@
+<!DOCTYPE Html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width">
+    <title>Login</title>
+</head>
+<body style="background-color:#0c441a;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+{% block content %}
+  <div class="upper" style="padding-left:86%;font-size:larger;">
+        <p style="color:orangered;">For Oxygen [&nbsp;
+        <a href="{% url 'oxygen' %}" style="color:lavender;">HOME</a> &nbsp;]</p>
+    </div>
+  <div style="padding:150px 200px 100px 550px;border-radius:3px;">  
+      <form method="post" style="background-color:lavender;border-radius:5px;
+                                  border-spacing:10px;width:350px;height:320px;padding:20px;
+                                  border-width:1px;border-style: solid;text-align:center;">
+        <h2 style="color:#491760;">LOGIN</h2>
+        {% csrf_token %}
+        <table>
+          {% if messages %}
+            {%  for msg in messages %}
+              {{msg}}
+            {% endfor %}
+          {% endif %}
+          {{ form.as_p }}
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="submit" value="Submit" style="color:orangered;font-size:large;"></td>
+            {% comment %} <a href="{% url 'home' %}">home</a> {% endcomment %}
+          </tr>                
+        </table>
+        <br>
+        <p style="text-align:left;color:orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Don't have an account!
+                                    &nbsp;<a href="{% url 'signup' %}">SIGN UP</a> </p>
+      </form>
+  </div>
+{% endblock %}
+</body>
+</html>
+
+
+{% comment %} {% extends 'index.html' %}
+
+{% block content %}
+    <h1>System Login</h1>
+    <form method="POST">
+         {% csrf_token %}
+        {{form.as_p}}
+        <button>Login</button>
+    </form>
+{% endblock %} {% endcomment %}
+{% comment %} {% block title %}Login{% endblock %} {% endcomment %}

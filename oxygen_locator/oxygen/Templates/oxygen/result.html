@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width">
+    <title>GOTO2</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<style>
+    table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color:darkgray;
+  border-style:solid;
+  border-color:black;
+  color:blue;
+}
+
+    td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+    }
+
+    th{
+        color:orangered;
+    }
+
+    tr:nth-child(even) {
+    background-color:;
+    }
+
+    body{
+        background-color:#471c6b;
+        color:lavender;
+    }
+
+a:link, a:visited {
+  background-color: transparent;
+  color: white;
+  padding-top:9px;
+  padding-left:86%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+</style>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+    <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button" onclick="openTab('hosp')">Table</button>
+        <button class="w3-bar-item w3-button" onclick="openTab('map')">Map</button>
+        <a href="/">HOME</a>
+    </div>
+
+    <div class="top_val">
+        <h2>&nbsp;&nbsp;&nbsp;&nbsp;You're in {{place}}</h2>
+    </div>
+
+    <div id="hosp" class="w3-container val">
+        <table>
+        <tr>
+            <th>HOSPITAL NAME</th>
+            <th>ADDRESS</th>
+            <th>CITY</th>
+            <th>STAFF NAME</th>
+            <th>CONTACT NUMBER</th>
+            <th>OXYGEN SUPPLY</th>
+            <th>DISTANCE</th>
+        </tr>
+        {% for i in hos_list %}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.address}}</td>
+                <td>{{i.city}}</td>
+                <td>{{i.staff_name}}</td>
+                <td>{{i.contact_number}}</td>
+                <td>{{i.oxygen_supply}}&nbsp;Litres</td>
+                <td>{{i.distance}}&nbsp;km</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+    <div id="map" class="w3-container val" style="display:none;padding-bottom:10px;">
+        {{map_sam|safe}}
+    </div>
+
+
+    <script>
+        function openTab(clickVal) {
+        var i;
+        var x = document.getElementsByClassName("val");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+        }
+        document.getElementById(clickVal).style.display = "block";  
+        }
+    </script>
+    
+</body>
+</html>
+{% comment %} <a href="{% url 'oxygen' %}">Click here to return home</a> {% endcomment %}
+
+
+{% comment %} <p> Name:<strong>{{i.name}}</strong><br>
+        Addr:<strong>{{i.address}}</strong><br>
+        Incharge:<strong>{{i.staff_name}}</strong><br>
+        Oxygen you entered:<strong>{{i.oxygen}} litres</strong><br>
+        Oxygen you got:<strong>{{i.oxygen_available}} litres</strong><br>
+        You're <strong>{{i.distance}} km </strong>away</p> {% endcomment %}
+{% comment %} <a href="{% url 'map_disp' user_input oxy %}">Click here to display the map</a>      {% endcomment %}
+
+
+{% comment %} <details>
+    <summary>Click to view map</summary>
+    {{map_sam|safe}}
+    </details> {% endcomment %}
+    {% comment %} <h1>You're nearby hospitals are:</h1> {% endcomment %}
+    {% comment %} <h3>You're in {{place}}</h1> {% endcomment %}
+    {% comment %} <details> {% endcomment %}
+    {% comment %} <summary>Click to view details</summary> {% endcomment %}

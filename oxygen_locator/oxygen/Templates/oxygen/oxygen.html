@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width">
+    <title>GOTO2</title>
+</head>
+<body style="background-color:#491760;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+        {% if user.is_authenticated %}
+            <div class="top_name" style="padding-left:80%;">
+                <p style="font-size:large;color:orangered;">Hello, {{user.username|default:'User'}}&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'logout' %}" style="color:lavender;">Logout</a></p>
+            </div>
+        {% else %}
+            <div class="top_name" style="padding-left:83%;">
+                <p style="font-size:large;color:orangered;">Hello, {{user.username|default:'User'}}&nbsp;
+                <a href="{% url 'signup' %}" style="color:white;">Sign Up</a>&nbsp;&nbsp;
+                <a href="{% url 'login' %}" style="color:white;">Login</a></p>
+            </div>
+        {% endif %}
+
+<div name="home" style="padding:100px 200px 100px 550px;border-radius:3px;">
+    <h1 style="color:orangered;">Welcome to Oxygen Locator!</h1><br>
+    {% if messages %}
+            {%  for msg in messages %}
+              {{msg}}
+            {% endfor %}
+          {% endif %}
+    <form action="{%url 'result' %}" style="background-color:lavender;border-radius:5px;
+                                    border-spacing:10px;width:400px;height:180px;padding:10px;
+                                    border-width:2px;border-style: solid;font-size:larger;padding:50px 10px 10px 20px;">
+        {% csrf_token %}
+        <label for="Place">Your Place</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        {% comment %} <input type="text" id="Place" name="Place" style="border-radius:5px;border-style:solid;border-width:1px;border-color:palegreen;" required/><br><br> {% endcomment %}
+        <input list="Places" name="Place" id="Place">
+        <datalist id="Places">
+                <option value="Avarampalayam,Coimbatore">
+                <option value="Avinashi Road,Coimbatore">
+                <option value="ATT Colony,Coimbatore">
+                <option value="Govt Arts College Road,Coimbatore">
+                <option value="Avaram Palayam Road,Coimbatore">
+                <option value="Bharathi Colony,Coimbatore">
+                <option value="Big Bazaar Street,Coimbatore">
+                <option value="Bharathi Nagar,Coimbatore">
+                <option value="Bharathi Park Road,Coimbatore">
+                <option value="Bharathiyar Road,Coimbatore">
+                <option value="Cheran Ma Nagar,Coimbatore">
+                <option value="Codissia,Coimbatore">
+                <option value="Chinnavedampatti,Coimbatore">
+                <option value="Damu Nagar,Coimbatore">
+                <option value="Dr Jaganathan Nagar,Coimbatore">
+                <option value="Eachanari Road,Coimbatore">
+                <option value="Edayar Street,Coimbatore">
+                <option value="Edayarpalayam,Coimbatore">
+                <option value="Ganapathy,Coimbatore">
+                <option value="GN Mills,Coimbatore">
+                <option value="GV Residency Road,Coimbatore">
+                <option value="Gandhipuram,Coimbatore">
+                <option value="Goods Shed Road,Coimbatore">
+                <option value="GKS Nagar,Coimbatore">
+                <option value="Gurusamy Nagar Road,Coimbatore">
+                <option value="Huzur Road,Coimbatore">
+                <option value="Jagannatha Nagar,Coimbatore">
+                <option value="Kamaraj Road,Coimbatore">
+                <option value="Kavundampalayam,Coimbatore">
+                <option value="Kothari Layout,Coimbatore">
+                <option value="Krishna Colony,Coimbatore">
+                <option value="Kurichi,Coimbatore">
+                <option value="Kalapatti,Coimbatore">
+                <option value="Koundampalayam,Coimbatore">
+                <option value="Krishnaswamy Nagar,Coimbatore">
+                <option value="Kurumbapalayam,Coimbatore">
+                <option value="Kalappanaickenpalayam,Coimbatore">
+                <option value="Kovai Pudur,Coimbatore">
+                <option value="KK Pudur ,Coimbatore">
+                <option value="Kuniamuthur,Coimbatore">
+                <option value="Lakshmi Mills Junction,Coimbatore">
+                <option value="Lakshmi Nagar,Coimbatore">
+                <option value="MTP Road,Coimbatore">
+                <option value="Madukkarai,Coimbatore">
+                <option value="Maruthamalai Road,Coimbatore">
+                <option value="Mettupalayam Road,Coimbatore">
+                <option value="Dr Nanjappa Road,Coimbatore">
+                <option value="Nehru Nagar,Coimbatore">
+                <option value="Dhamu Nagar,Coimbatore">
+                <option value="Navavoor Pirivu,Coimbatore">
+                <option value="NGGO Colony,Coimbatore">
+                <option value="Ondipudur,Coimbatore">
+                <option value="Pappanaicken Pudur,Coimbatore">
+                <option value="Pappanaickenpalayam,Coimbatore">
+                <option value="Periasamy Road,Coimbatore">
+                <option value="Podanur,Coimbatore">
+                <option value="P.N.Palayam,Coimbatore">
+                <option value="Palathurai Road,Coimbatore">
+                <option value="Pannimadai,Coimbatore">
+                <option value="Perur Main Road,Coimbatore">
+                <option value="Puliakulam,Coimbatore">
+                <option value="Peelamedu,Coimbatore">
+                <option value="Puliakulam Road,Coimbatore">
+                <option value="RS Puram,Coimbatore">
+                <option value="Ramanathapuram,Coimbatore">
+                <option value="Rathinapuri,Coimbatore">
+                <option value="GD Layout,Coimbatore">
+                <option value="Rajiv Gandhi Nagar,Coimbatore">
+                <option value="Ramasamy Nagar,Coimbatore">
+                <option value="Redfields,Coimbatore">
+                <option value="Ram Nagar,Coimbatore">
+                <option value="Race Course,Coimbatore">
+                <option value="Saibaba Colony,Coimbatore">
+                <option value="Sakthi Nagar,Coimbatore">
+                <option value="Sanganur Pallam ,Coimbatore">
+                <option value="Saravanampatti,Coimbatore">
+                <option value="Sathy Road,Coimbatore">
+                <option value="Selvapuram,Coimbatore">
+                <option value="SIHS Colony,Coimbatore">
+                <option value="Singanallur,Coimbatore">
+                <option value="Siruvani Main Road,Coimbatore">
+                <option value="SITRA,Coimbatore">
+                <option value="Sivananda Colony,Coimbatore">
+                <option value="Sowripalayam,Coimbatore">
+                <option value="Sri vignesh nagar,Coimbatore">
+                <option value="Sugar Cane Institute Road,Coimbatore">
+                <option value="Sundarapuram,Coimbatore">
+                <option value="Sungam,Coimbatore">
+                <option value="Swamy Iyer New Street,Coimbatore">
+                <option value="Vellalore Road,Coimbatore">
+                <option value="Tatabad,Coimbatore">
+                <option value="Thudiyalur,Coimbatore">
+                <option value="Teachers Colony,Coimbatore">
+                <option value="Telungu Palayam Road,Coimbatore">
+                <option value="Thondamuthur Road,Coimbatore">
+                <option value="Trichy Road,Coimbatore">
+                <option value="Thadagam Road,Coimbatore">
+                <option value="TVS Nagar,Coimbatore">
+                <option value="Ukkadam,Coimbatore">
+                <option value="Uppilipalayam,Coimbatore">
+                <option value="Vedapatti Road,Coimbatore">
+                <option value="Velandipalayam,Coimbatore">
+                <option value="VOC Nagar,Coimbatore">
+                <option value="Vadavalli,Coimbatore">
+                <option value="Vellakinar Road,Coimbatore">
+                <option value="Vilankurichi Road,Coimbatore">
+                <option value="Vellalore,Coimbatore">
+                <option value="Vinayaka Street,Coimbatore">
+                <option value="Varadharajapuram,Coimbatore">
+                <option value="VKK Menon Road,Coimbatore">
+                <option value="W Club Road,Coimbatore">
+                <option value="Selvapuram North,Coimbatore">
+                <option value="Singanallur ,Coimbatore">
+                <option value="Sowripalayam,Coimbatore">
+                <option value="Sukrawar Pettai,Coimbatore">
+            </datalist>
+            <br><br>
+        <label for="Oxygen">Oxygen Needed(in Litres)</label>
+        <input type="number" id="Oxygen" name="Oxygen" style="border-radius:5px;border-style:solid;border-width:1px;border-color:palegreen;" required/><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="submit" name="" value="Submit" style="color:orangered;font-size:large;">    
+
+    </form>
+    <p style="color:red;text-align:center;"><h3 style="color:red;">Note:</h3>This app can provide you details about location of hospital<br>which supplies the oxygen that you need!!</p>
+</div>
+</body>
+</html>
+
+{% comment %} <button type="button" onclick="alert('Hello World!')">Click Me!</button> {% endcomment %}
+        {% comment %} <a href="{% url 'home' %}">home</a> {% endcomment %}
+        {% comment %} <button type="button" onclick="alert('Hello World!')">Click Me!</button> {% endcomment %}
+        {% comment %} <h1>Hello,{{user.username|default:'Guest'}} </h1> {% endcomment %}
+
+    {% comment %} <p> Welcome to the Our site</p>
+    <div>
+      {% comment %} <a href="{% url 'signup' %}">Sign Up</a> {% endcomment %}
+
+      {% comment %} <a href="{% url 'login' %}">Login</a> {% endcomment %}
+      {% comment %} {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">Logout</a>
+    
+      {% else %}
+          <a href="{% url 'login' %}">Login</a>
+          
+          <a href="{% url 'signup' %}">Sign Up</a>
+      {% endif %}
+    {% comment %} </div> {% endcomment %} 
+{% comment %} onclick="alert('Hello World!') {% endcomment %}
+{% comment %} {% load static %} {% endcomment %}
+        {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'web/images/style.css' %}"> {% endcomment %}
+        {% comment %} <select name="place" id="place">
+        <option value="townhall">townhall,coimbatore</option>
+        <option value="Ganapathy">ganapathy,coimbatore</option> {% endcomment %}
+        {% comment %} </select> {% endcomment %}
+        {% comment %} <input type="text" id="Place" name="Place" required/> {% endcomment %}
+        {% comment %} <input list="Places" name="Place" id="Place">
+         {% comment %} <select name="Place" id="Place" style="display:none;"> 
+        <datalist id="Place">
+        {%for i in q%}
+        <option value=i.place_name>
+        {%endfor%}
+        </datalist> {% endcomment %}
+
+        
